@@ -1,18 +1,39 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
-        stage('run-parallel-branches') {
-            steps { 
-              parallel(
-                a: {
-                  echo "test 1.0"
-                  },
-                b: {
-                echo "test 2.0"
-                
-            }
-            )
-            }
+        stage('Run Tests') {
+              parallel {
+                stage('Testing 1.0') {
+                  agent {
+                     label "windows"
+                     }
+                     
+                     steps {
+                     bat "run-tests.bat"
+                     }
+                     post {
+                     always { 
+                     junit "**/TEST-*.xml"
+                     }
+                     }
+                     }
+                     
+                stage('Testing 2.0')
+                     agent { 
+                     label "Linux"
+                     }
+                     steps { 
+                        sh "run-tests.sh"
+                        }
+                     post { 
+                         always { 
+                            junit "**/TEST-*.xml"
+                            }
+           }
         }
-    
+       }
+      }
+     }
+ }
+                            
