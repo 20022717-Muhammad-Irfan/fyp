@@ -2,27 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('run-parallel-branches') {
             steps { 
-              sh 'make'
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+              parallel(
+                a: {
+                  echo "test 1.0"
+                  },
+                b: {
+                echo "test 2.0"
+                
+            }
+            )
             }
         }
-        stage('Test') {
-            steps {
-                sh 'make check || true' 
-                junit '**/target/*.xml' 
-            }
-        }
-        stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }
-            steps {
-                sh 'make publish'
-            }
-        }
-    }
-}
+    
