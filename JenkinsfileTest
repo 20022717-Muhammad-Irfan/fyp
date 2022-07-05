@@ -1,39 +1,16 @@
-pipeline {
-    agent none
-
-    stages {
-        stage('Run Tests') {
-              parallel {
-                stage('Testing 1.0') {
-                  agent {
-                     label "windows"
-                     }
-                     
-                     steps {
-                     bat "run-tests.bat"
-                     }
-                     post {
-                     always { 
-                     junit "**/TEST-*.xml"
-                     }
-                     }
-                     }
-                     
-                stage('Testing 2.0')
-                     agent { 
-                     label "Linux"
-                     }
-                     steps { 
-                        sh "run-tests.sh"
-                        }
-                     post { 
-                         always { 
-                            junit "**/TEST-*.xml"
-                            }
-           }
+pipeline { 
+  stage('Tests') {
+    parallel(
+        'Unit Tests': {
+            container('node') {
+                sh("npm test --cat=unit")
+            }
+        },
+        'API Tests': {
+            container('node') {
+                sh("npm test --cat=acceptance")
+            }
         }
-       }
-      }
-     }
- }
-                            
+    )
+}
+} 
