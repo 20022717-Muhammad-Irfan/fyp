@@ -1,16 +1,51 @@
-pipeline { 
-  stage('Tests') {
-    parallel(
-        'Unit Tests': {
-            container('node') {
-                sh("npm test --cat=unit")
-            }
-        },
-        'API Tests': {
-            container('node') {
-                sh("npm test --cat=acceptance")
+pipeline {
+    agent any
+    stages {
+        stage('Non-Parallel Stage') {
+            steps {
+                echo 'This stage will be executed first.'
             }
         }
-    )
+        stage('Parallel Stage') {
+            when {
+                branch 'main'
+            }
+            failFast true
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        label "for-branch-a"
+                    }
+                    steps {
+                        echo "On Branch A"
+                    }
+                }
+                stage('Branch B') {
+                    agent {
+                        label "for-branch-b"
+                    }
+                    steps {
+                        echo "On Branch B"
+                    }
+                }
+                stage('Branch C') {
+                    agent {
+                        label "for-branch-c"
+                    }
+                    stages {
+                        stage('Nested 1') {
+                            steps {
+                                echo "In stage Nested 1 within Branch C"
+                            }
+                        }
+                        stage('Nested 2') {
+                            steps {
+                                echo "In stage Nested 2 within Branch C"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-} 
