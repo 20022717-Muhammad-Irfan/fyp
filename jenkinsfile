@@ -1,44 +1,38 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('Stage 1') {
-       
+        stage('Build') {
             steps {
-                echo 'Hello world!' 
+                echo 'This stage will execute the docker image and its container.'
             }
         }
-        
-        stage ('Stage 2') {
-            steps { 
-                echo 'My name is Anugerah Khalis'
-            }
+        stage('Test') {
             
-        }
-        
-        stage ('Stage 3') {
-            steps { 
-                echo 'I am learning to do a simple pipeline'
+            parallel {
+                stage('Integration Test') {
+                  
+                   steps {
+                        echo 'Testing the integration btwn Docker, GitHub and Jenkins'
+                    }
+                }
+                stage('End-to-End Test') {
+                    
+                    steps {
+                        echo 'User testing the web application'
+                    }
+                }
+                stage('Web App Test') {
+                    
+                    steps {
+                       echo 'Testing the features are working'
+                    }
+                }
             }
-            
         }
-        
-        stage ('Stage 4') {
-            steps { 
-                echo 'This is something new to learn'
-            }
-            
-        }
-        
-         stage ('Stage 5') {
-            steps { 
-                echo 'Thank you'
-            }
-            
-        }
-       
-       
+        stage ('Deploy') {
+         steps {
+           echo 'Deployment stage executed'
+           }
+           }
     }
-    
-    
-    
 }
