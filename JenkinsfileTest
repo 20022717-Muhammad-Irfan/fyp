@@ -1,42 +1,38 @@
 pipeline {
     agent any
     stages {
-        stage('Non-Parallel Stage') {
+        stage('Build') {
             steps {
-                echo 'This stage will be executed first.'
+                echo 'This stage will execute the docker image and its container.'
             }
         }
-        stage('Parallel Stage') {
+        stage('Test') {
             
             parallel {
-                stage('Branch A') {
+                stage('Integration Test') {
                   
                    steps {
-                        echo "On Branch A"
+                        echo 'Testing the integration btwn Docker, GitHub and Jenkins'
                     }
                 }
-                stage('Branch B') {
+                stage('End-to-End Test') {
                     
                     steps {
-                        echo "On Branch B"
+                        echo 'User testing the web application'
                     }
                 }
-                stage('Branch C') {
+                stage('Web App Test') {
                     
-                    stages {
-                        stage('Nested 1') {
-                            steps {
-                                echo "In stage Nested 1 within Branch C"
-                            }
-                        }
-                        stage('Nested 2') {
-                            steps {
-                                echo "In stage Nested 2 within Branch C"
-                            }
-                        }
+                    steps {
+                       echo 'Testing the features are working'
                     }
                 }
             }
         }
+        stage ('Deploy') {
+         steps {
+           echo 'Deployment stage executed'
+           }
+           }
     }
 }
