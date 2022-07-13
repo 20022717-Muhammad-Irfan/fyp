@@ -1,7 +1,13 @@
 pipeline {
     agent any
+    options { 
+       skipStagesAfterUnstable() 
+         } 
     stages {
-        stage('Build') {
+        stage('Build') { 
+             options { 
+                  timestamps() 
+                        } 
             steps {
                 echo 'This stage will execute the docker image and its container.'
             }
@@ -10,7 +16,9 @@ pipeline {
             
             parallel {
                 stage('Integration Test') {
-                  
+                   options { 
+                       timestamps() 
+                        } 
                    steps {
                         echo 'Testing the integration btwn Docker, GitHub and Jenkins'
                     }
@@ -30,6 +38,9 @@ pipeline {
             }
         }
         stage ('Deploy') {
+            options { 
+                  timestamps() 
+                        } 
          steps {
            echo 'Deployment stage executed'
            }
