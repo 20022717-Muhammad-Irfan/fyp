@@ -5,10 +5,10 @@ pipeline {
             steps { sh 'mkdir repo1'
                     sh 'cd repo1'
                     dir ('repo1') {
-                    git([url : 'https://github.com/20022717-Muhammad-Irfan/test.git', branch: 'main']
+                    git([url : 'https://github.com/20022717-Muhammad-Irfan/test.git', branch: 'main'])
                     }
                 }
-                
+                }
         stage('Build') {
             steps { sh 'cd repo1'
                     sh 'docker build -t myimage .'
