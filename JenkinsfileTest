@@ -1,16 +1,16 @@
 pipeline {
     agent any
     stages {
-       stage('CLone git') { 
-            steps { sh 'mkdir repo1'
-                    sh 'cd repo1'
-                    dir ('repo1') {
+       stage('Clone git') { 
+            steps { sh 'mkdir test'
+                    sh 'cd test'
+                    dir ('test') {
                     git([url : 'https://github.com/20022717-Muhammad-Irfan/test.git', branch: 'main'])
                     }
                 }
                 }
         stage('Build') {
-            steps { sh 'cd repo1'
+            steps { sh 'cd test'
                     sh 'docker build -t myimage .'
                     sh 'docker run myimage'
                     echo 'This stage will execute the docker image and its container.'
