@@ -1,10 +1,8 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'node --version'
-                sh 'svn --version'
                 echo 'This stage will execute the docker image and its container.'
             }
         }
