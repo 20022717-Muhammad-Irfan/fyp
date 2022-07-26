@@ -1,18 +1,40 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
     stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
+        stage('Build') {
             steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                sh 'node --version'
+                sh 'svn --version'
+                echo 'This stage will execute the docker image and its container.'
             }
         }
+        stage('Test') {
+            
+            parallel {
+                stage('Integration Test') {
+                  
+                   steps {
+                        echo 'Testing the integration btwn Docker, GitHub and Jenkins'
+                    }
+                }
+                stage('End-to-End Test') {
+                    
+                    steps {
+                        echo 'User testing the web application'
+                    }
+                }
+                stage('Web App Test') {
+                    
+                    steps {
+                       echo 'Testing the features are working'
+                    }
+                }
+            }
+        }
+        stage ('Deploy') {
+         steps {
+           echo 'Deployment stage executed'
+           }
+           }
     }
 }
