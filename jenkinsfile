@@ -1,9 +1,10 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'This stage will execute the docker image and its container.'
+    agent { dockerfile true}
+    stages {      
+        stage('Build') { 
+            agent any
+            steps { sh 'cd fyp'
+                    sh 'docker build -t myimage .'
             }
         }
         stage('Test') {
