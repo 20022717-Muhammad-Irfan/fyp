@@ -19,10 +19,11 @@ pipeline {
         stage('Test') {
             
             parallel {
-                stage('Integration Test') {
+            
+                stage('Docker Container Test') {
                   
                    steps {
-                        echo 'Testing the integration btwn Docker, GitHub and Jenkins'
+                        sh '
                     }
                 }
                 stage('End-to-End Test') {
