@@ -11,8 +11,7 @@ pipeline {
                 }
                 }
         stage('Build and Deploy') {
-            steps { sh 'chmod 666 /var/run/docker.sock'
-                    sh 'cd fyp'
+            steps { sh 'cd fyp'
                     sh 'docker build -t website .'
                     sh 'docker run -it -p 8080:80 --name web website'
                     echo 'This stage will execute the docker image and its container.'
