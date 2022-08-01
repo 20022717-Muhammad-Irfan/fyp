@@ -23,7 +23,7 @@ pipeline {
                 stage('Docker Container Test') {
                   
                    steps {
-                       
+                       echo 'build container'
                     }
                 }
                 stage('End-to-End Test') {
