@@ -2,9 +2,9 @@ pipeline {
     agent { dockerfile true}
     stages {
        stage('Clone git') { 
-            steps { sh 'mkdir fyp1.0'
-                    sh 'cd fyp1.0'
-                    dir ('fyp1.0') {
+            steps { sh 'mkdir fyp'
+                    sh 'cd fyp'
+                    dir ('fyp') {
                     git url : 'https://github.com/20022717-Muhammad-Irfan/fyp.git', branch: 'main'
                     }
                 }
