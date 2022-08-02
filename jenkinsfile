@@ -15,7 +15,7 @@ pipeline {
                sh 'echo "fyp2022" | sudo -S docker build -t myimage .'
                sh 'echo "fyp2022" | sudo -S docker run -d -it -h fyp --name FYP myimage /bin/bash'
                sh 'echo "fyp2022" | sudo -S docker stop FYP '
-               sh 'echo "fyp2022" | sudo -S docker connect --ip 172.17.0.3 docker-network FYP'
+               sh 'echo "fyp2022" | sudo -S docker connect --ip 172.18.0.3 docker-network FYP'
                sh 'echo "fyp2022" | sudo -S docker start FYP '
             }
         }
