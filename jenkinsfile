@@ -11,10 +11,10 @@ pipeline {
                 }
                 }
         stage('Build and Deploy') {
-            steps { sh 'cd fyp'
-                    sh 'docker build -t website .'
-                    sh 'docker run -it -p 8080:80 --name web website'
-                    echo 'This stage will execute the docker image and its container.'
+            steps {
+               git 'https://github.com/20022717-Muhammad-Irfan/fyp/blob/98d2038fd7f5647f27971c0201b9bfa01e11ac2f/Dockerfile'
+               
+               myImg = docker.build 'my-image'
             }
         }
         stage('Test') {
