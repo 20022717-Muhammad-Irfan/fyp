@@ -12,6 +12,9 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
+               sh 'echo "docker(0" | sudo -S docker stop FYP'
+               sh 'echo "docker(0" | sudo -S docker rm FYP'
+               sh 'echo "docker(0" | sudo -S docker image rm web'
                sh 'cd fyp'
                sh 'echo "docker(0" | sudo -S docker build -t web .'
                sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp -p 80:80 --name FYP web'
