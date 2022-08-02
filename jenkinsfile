@@ -12,8 +12,7 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
-               sh 'docker run -d -it -h fyp --add-host fyp:10.1.0.2 --network fyp_customnetwork --ip 10.1.0.98 --name FYP fypimage /bin/bash'
-               sh 'docker start FYP '
+               sh './var/lib/jenkins/workspace/SOI_2022_0054_FYP/Dockerfile'
             }
         }
         stage('Test') {
