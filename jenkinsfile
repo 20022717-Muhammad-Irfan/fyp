@@ -12,9 +12,7 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
-               git 'https://github.com/20022717-Muhammad-Irfan/fyp/blob/98d2038fd7f5647f27971c0201b9bfa01e11ac2f/Dockerfile'
-               
-               sh 'myImg = docker.build 'my-image''
+               sh'echo "docker&8" | sudo -S docker run -d -it -h fyp --add-host fyp:10.1.0.2 --network fyp_customnetwork --ip 10.1.0.98 --
             }
         }
         stage('Test') {
