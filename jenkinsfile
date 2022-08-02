@@ -14,6 +14,7 @@ pipeline {
             steps {
                sh 'echo "docker(0" | sudo -S docker build -t myimage .'
                sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp --name FYP myimage /bin/bash/'
+               sh 'echo "docker(0" | sudo -S docker start FYP '
             }
         }
         stage('Test') {
