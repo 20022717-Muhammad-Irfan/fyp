@@ -12,7 +12,6 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
-               sh 'docker build -t myimage .'
                sh 'docker run -d -it -h fyp --name FYP myimage /bin/bash'
                sh 'docker start FYP '
             }
