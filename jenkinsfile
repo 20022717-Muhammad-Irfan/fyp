@@ -13,7 +13,7 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                sh 'echo "fyp2022" | sudo -S docker build -t myimage .'
-               sh 'echo "fyp2022" | sudo -S docker run -d -it -h fyp --name FYP myimage /bin/bash/'
+               sh 'echo "fyp2022" | sudo -S docker run -d -it -p 80:80 --name FYP myimage /bin/bash/'
                sh 'echo "fyp2022" | sudo -S docker start FYP '
             }
         }
