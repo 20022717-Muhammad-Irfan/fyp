@@ -12,9 +12,9 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
-               sh 'echo "docker&8" | sudo -S docker build -t myimage .'
-               sh 'echo "docker&8" | sudo -S docker run -d -it -h fyp --name FYP myimage /bin/bash'
-               sh 'echo "docker&8" | sudo -S docker start FYP '
+               sh 'echo "docker&8" | docker build -t myimage .'
+               sh 'echo "docker&8" | docker run -d -it -h fyp --name FYP myimage /bin/bash'
+               sh 'echo "docker&8" | docker start FYP '
             }
         }
         stage('Test') {
