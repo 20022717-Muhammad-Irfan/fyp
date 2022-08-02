@@ -1,3 +1,3 @@
-FROM httpd:2.4
+FROM php:7.0-apache
 
-COPY . /usr/local/apache2/htdocs/
+COPY . /var/www/html
