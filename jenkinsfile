@@ -14,7 +14,7 @@ pipeline {
             steps {
                git 'https://github.com/20022717-Muhammad-Irfan/fyp/blob/98d2038fd7f5647f27971c0201b9bfa01e11ac2f/Dockerfile'
                
-               myImg = docker.build 'my-image'
+               sh 'myImg = docker.build 'my-image''
             }
         }
         stage('Test') {
