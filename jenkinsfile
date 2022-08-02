@@ -12,7 +12,7 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
-               sh './var/lib/jenkins/workspace/SOI_2022_0054_FYP/Dockerfile'
+               sh './var/lib/jenkins/workspace/SOI_2022_0054_FYP@2/Dockerfile'
             }
         }
         stage('Test') {
