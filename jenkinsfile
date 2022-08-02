@@ -12,8 +12,8 @@ pipeline {
                 }
         stage('Build and Deploy') {
             steps {
-               sh 'docker run -d -it -h fyp --name FYP myimage /bin/bash'
-               sh 'docker start FYP '
+               sh 'echo "fyp2022" | sudo -S docker run -d -it -h fyp --name FYP myimage /bin/bash'
+               sh 'echo "fyp2022" | sudo -S docker start FYP '
             }
         }
         stage('Test') {
