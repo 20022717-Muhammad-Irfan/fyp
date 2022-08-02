@@ -11,6 +11,8 @@ pipeline {
                 }
                 }
         stage('Build and Deploy') {
+           def dockerHome = tool 'myDocker'
+           env.PATH = "${dockerHome}/bin:${env.PATH}"
             steps {
                sh 'echo "docker&8" | docker build -t myimage .'
                sh 'echo "docker&8" | docker run -d -it -h fyp --name FYP myimage /bin/bash'
