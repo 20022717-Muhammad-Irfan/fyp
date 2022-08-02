@@ -14,7 +14,7 @@ pipeline {
             steps {
                sh 'cd fyp'
                sh 'echo "docker(0" | sudo -S docker build -t web .'
-               sh 'echo "docker(0" | sudo -S docker run -d -it -p 80:80 --name FYP web /bin/bash/'
+               sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp -p 80:80 --name FYP web'
                sh 'echo "docker(0" | sudo -S docker start FYP'
             }
         }
