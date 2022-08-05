@@ -28,7 +28,7 @@ pipeline {
             steps {
                sh 'cd fyp'
                sh 'echo "docker(0" | sudo -S docker build -t fypimg .'
-               sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp -p 9000:80 --network fyp-network --ip 172.17.0.2 --name FYP fypimg'
+               sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp -p 9000:80 --network fyp-network --ip 192.168.10.5 --name FYP fypimg'
                sh 'echo "docker(0" | sudo -S docker exec FYP /opt/lampp/lampp start'
             }
         }
