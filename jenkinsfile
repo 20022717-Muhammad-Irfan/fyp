@@ -23,6 +23,16 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
+        
+        stage('Remove old containers') {
+           steps {
+             sh 'echo "docker(0" | sudo -S docker stop FYP'
+             sh 'echo "docker(0" | sudo -S docker rm FYP'
+             sh 'echo "docker(0" | sudo -S docker image rm fypimg'
+              
+              }
+              
+            }
             
         stage('Build and Deploy') {
             steps {
