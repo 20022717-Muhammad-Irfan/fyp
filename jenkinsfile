@@ -25,14 +25,11 @@ pipeline {
             }
         }
         
-         stage('New') {
+         stage('Remove old containers') {
              steps {
-              
-              
-              
-              
-              
-              
+               sh 'echo "docker(0" | sudo -S docker stop FYP'
+               sh 'echo "docker(0" | sudo -S docker rm FYP'
+               sh 'echo "docker(0" | sudo -S docker image rm web'
               }
               
             }
@@ -40,13 +37,10 @@ pipeline {
             
         stage('Build and Deploy') {
             steps {
-               sh 'echo "docker(0" | sudo -S docker stop FYP'
-               sh 'echo "docker(0" | sudo -S docker rm FYP'
-               sh 'echo "docker(0" | sudo -S docker image rm web'
                sh 'cd fyp'
-               sh 'echo "docker(0" | sudo -S docker build -t web .'
-               sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp -p 80:80 --ip 172.17.0.2 --name FYP web'
-               sh 'echo "docker(0" | sudo -S docker start FYP'
+               sh 'echo "docker(0" | sudo -S docker build -t fypimg .'
+               sh 'echo "docker(0" | sudo -S docker run -d -it -h fyp -p 9000:80 --network fyp-network --ip 172.17.0.2 --name FYP fypimg'
+               sh 'echo "docker(0" | sudo -S docker exec FYP /opt/lampp/lampp start'
             }
         }
         stage('Test') {
