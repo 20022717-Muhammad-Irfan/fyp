@@ -24,6 +24,20 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
+        
+         stage('New') {
+             steps {
+              
+              
+              
+              
+              
+              
+              }
+              
+            }
+            
+            
         stage('Build and Deploy') {
             steps {
                sh 'echo "docker(0" | sudo -S docker stop FYP'
