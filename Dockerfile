@@ -2,9 +2,9 @@ FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install net-tools
 RUN apt-get install -y wget
-RUN wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.1.6/xampp-linux-x64-8.1.6-0-installer.run/download
-RUN chmod 755 download
-RUN ./download --mode unattended
+RUN wget https://downloadsapachefriends.global.ssl.fastly.net/8.1.6/xampp-linux-x64-8.1.6-0-installer.run?from_af=true
+RUN chmod 755 xampp-linux-x64-8.1.6-0-installer.run?from_af=true
+RUN ./xampp-linux-x64-8.1.6-0-installer.run?from_af=true --mode unattended
 RUN rm download
 
 VOLUME ["opt/lampp/htdocs"]
