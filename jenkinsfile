@@ -23,14 +23,6 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
-        
-         stage('Remove old containers') {
-             steps {
-              
-              }
-              
-            }
-            
             
         stage('Build and Deploy') {
             steps {
