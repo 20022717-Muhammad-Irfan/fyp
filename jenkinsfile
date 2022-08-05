@@ -18,7 +18,7 @@ pipeline {
                 ok "Yes, we should."
                 submitter "akhalis"
                 parameters {
-                    string(name: 'PERSON', defaultValue: 'FYP team', description: 'Who should I say hello to?')
+                    string(name: 'PERSON', defaultValue: 'FYP team', description: 'Do you want to continue?')
                 }
             }
             steps {
