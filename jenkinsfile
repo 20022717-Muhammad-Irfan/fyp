@@ -6,9 +6,7 @@ pipeline {
                     sh 'rm -r fyp'
                     sh 'mkdir fyp'
                     sh 'cd fyp'
-                    dir ('fyp') {
-                    git clone 'https://github.com/20022717-Muhammad-Irfan/fyp.git'
-                    }
+                    sh 'git clone https://github.com/20022717-Muhammad-Irfan/fyp.git'
                 }
              }
                 
