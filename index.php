@@ -27,7 +27,7 @@
 } </style>  
 </head>  
 <body>   
-   <p><a href="register.php">Register</a> | <a href="index.php">Login</a> | <a href="contact.html">Contact Us</a></p>  
+   <p><a href="register.php">Register</a> | <a href="index.php">Login</a></p>  
 <h3>Login Form</h3>  
 <form action="" method="POST">  
 Username: <input type="text" name="user"><br />  
